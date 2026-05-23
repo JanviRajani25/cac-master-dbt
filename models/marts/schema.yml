@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: cac_master
+    description: "Final CAC Master output. Calculates subsidy amount for each subsidised handset contract. Mirrors the Three Ireland CAC Master pipeline."
+    columns:
+      - name: subscriber_id
+        description: "Customer mobile number"
+        tests:
+          - not_null
+
+      - name: customer_id
+        description: "Unique customer identifier"
+        tests:
+          - not_null
+
+      - name: sch_status
+        description: "Whether the contract is active or closed"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Open', 'Closed']
+
+      - name: init_debt_value
+        description: "Initial subsidy amount - device cost minus upfront payment"
+        tests:
+          - not_null
+
+      - name: monthly_cac
+        description: "Monthly recovery amount - init_debt_value divided by contract term"
+
+      - name: hrs_exception
+        description: "Exception reason if contract failed validation"
+        tests:
+          - accepted_values:
+              values: ['Invalid Handset', 'Device Cost', 'Upfront Payment', 'Contract Term']
+              config:
+                where: "hrs_exception is not null"

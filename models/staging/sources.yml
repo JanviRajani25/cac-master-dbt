@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: raw
+    project: cac-master-portfolio
+    dataset: raw
+    tables:
+      - name: subscriber_events
+      - name: device_prices
+      - name: vat_rates
+      - name: contract_terms
