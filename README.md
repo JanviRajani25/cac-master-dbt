@@ -229,7 +229,9 @@ dbt docs generate
 dbt docs serve
 
 ```
+### Pipeline Lineage
 
+![CAC Master Pipeline Lineage](lineage.png)
 
 
 \## Author
