@@ -1,0 +1,70 @@
+version: 2
+
+models:
+  - name: stg_subscriber_events
+    description: "Cleaned subscriber events - FTC and UPG only, PPD excluded"
+    columns:
+      - name: subscriber_id
+        description: "Customer mobile number"
+        tests:
+          - not_null
+          - unique
+      - name: customer_id
+        description: "Unique customer identifier"
+        tests:
+          - not_null
+      - name: event_type
+        description: "Type of connection - FTC or UPG"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['FTC', 'UPG']
+      - name: event_date
+        description: "Date of the connection event"
+        tests:
+          - not_null
+      - name: sales_channel
+        description: "Sales channel - CON, MS, or SFDC"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['CON', 'MS', 'SFDC']
+
+  - name: stg_device_prices
+    description: "Device pricing reference data"
+    columns:
+      - name: device_oracle_code
+        description: "Unique device identifier"
+        tests:
+          - not_null
+          - unique
+      - name: device_average_price
+        description: "Average retail price of the device"
+        tests:
+          - not_null
+
+  - name: stg_vat_rates
+    description: "VAT rate reference data"
+    columns:
+      - name: vat_code
+        description: "VAT code identifier"
+        tests:
+          - not_null
+          - unique
+      - name: vat_rate
+        description: "VAT rate as a decimal"
+        tests:
+          - not_null
+
+  - name: stg_contract_terms
+    description: "Contract term reference data"
+    columns:
+      - name: subscriber_id
+        description: "Customer mobile number"
+        tests:
+          - not_null
+      - name: contract_term
+        description: "Contract duration in months"
+        tests:
+          - not_null
+          

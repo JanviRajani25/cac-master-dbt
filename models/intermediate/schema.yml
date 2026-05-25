@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: int_exceptions
+    description: "Exception flags for data quality issues"
+    columns:
+       - name: invalid_handset
+         description: "Y if handset is invalid"
+         tests: 
+           - not_null
+           - accepted_values:
+               values: ['Y','N']
+
+       - name: invalid_device_cost
+         description: "Y if device cost is missing"
+         tests: 
+           - not_null
+           - accepted_values:
+               values: ['Y','N']
+
+       - name: invalid_upfront_payment
+         description: "Y if upfront payment is missing"
+         tests: 
+           - not_null
+           - accepted_values:
+               values: ['Y','N']
+
+       - name: invalid_contract_term
+         description: "Y if contract term is invalid"
+         tests: 
+           - not_null
+           - accepted_values:
+               values: ['Y','N']
+
