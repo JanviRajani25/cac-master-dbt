@@ -36,3 +36,15 @@ models:
               values: ['Invalid Handset', 'Device Cost', 'Upfront Payment', 'Contract Term']
               config:
                 where: "hrs_exception is not null"
+  - name: bank_offer
+    description: "Bank Offer output. Find eligible contracts to be sold to bank and calculates face amount for each eligible contract. Mirrors the Three Ireland Bank Offer pipeline."
+    columns:
+      - name: bank_offer_flag
+        description: "Y if customer is eligible to be sold to bank"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['Y','N']
+	  
+
+  
